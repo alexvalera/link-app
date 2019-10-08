@@ -1,0 +1,11 @@
+{
+  "name": "link-app",
+  "version": "1.0.0",
+  "description": "An app that highlights a user's creative content, including articles, music, videos, and everything inbetween.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
