@@ -159,7 +159,7 @@
   }, 
   "husky": {
     "hooks": {
-        "pre-commit": "npm run lint && git add "
+        "pre-commit": "npm run lint && git add ."
     }
   }
 }
