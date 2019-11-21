@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'; 
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import './BasicInfo.scss';
 
-import BasicInfoConstants from '../../constants/basic-info';
-import { Colors } from '../../constants';
+import { Colors, BasicInfoConstants as Constants } from '@constants/index';
 
 const BasicInfoContainer = styled.section`
   background-color: white;
@@ -24,7 +22,13 @@ const BasicInfoName = styled.div`
   color: ${Colors.BLACK}
   font-size: 24px;
   margin: 0;
-`
+`; 
+
+const BasicInfoImage = styled.img`
+  height: 4.5rem;
+  width: 4.5rem;
+  border-radius: 50%;
+`;
 
 interface BasicInfoProps {
   fullName: string,
@@ -43,7 +47,7 @@ const BasicInfo = (props: BasicInfoProps) => {
   return (
     <div className = {basicInfoClasses}>
       <div className = "basic-info__col">
-        <img alt = "profile" src = {props.image || BasicInfoConstants.defaultImagePath }/>
+        <img alt = "profile" src = {props.image || Constants.defaultImagePath }/>
       </div>
       <div className = "basic-info__col">
         <p className = "basic-info__name"><strong>{props.fullName || ''}</strong></p>
