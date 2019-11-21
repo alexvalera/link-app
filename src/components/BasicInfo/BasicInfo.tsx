@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect } from 'react'; 
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import './BasicInfo.scss';
 
 import { colors, device, basicInfoConstants as Constants } from '@constants/index';
 
@@ -13,19 +12,19 @@ const BasicInfoContainer = styled.section`
 
 const BasicInfoContainerFixed = styled(BasicInfoContainer)`
   left: 25px;
-  padding: 1rem 0; 
+  padding: 1rem 0;
   position: fixed;
-  right: 25px; 
-  top: 0; 
+  right: 25px;
+  top: 0;
   @media ${device.mobile} {
     left: 50px;
     right: 50px;
   }
 
   @media ${device.tablet} {
-    left: auto; 
-    right: auto; 
-    width: 600px; 
+    left: auto;
+    right: auto;
+    width: 600px;
   }
 `;
 
@@ -42,14 +41,14 @@ const BasicInfoName = styled.p`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
-`; 
+`;
 
-const BasicInfoMeta= styled.p`
+const BasicInfoMeta = styled.p`
   color: ${colors.BLACK}
   font-size: 1rem;
   font-weight: 300; 
   margin: 0;
-`; 
+`;
 
 const BasicInfoImage = styled.img`
   height: 4.5rem;
@@ -58,37 +57,35 @@ const BasicInfoImage = styled.img`
 `;
 
 interface BasicInfoProps {
-  fullName: string,
-  profession: string, 
-  location: string, 
-  image?: string, 
-  isInfoFixed: boolean
+  fullName: string;
+  profession: string;
+  location: string;
+  image?: string;
+  isInfoFixed: boolean;
 }
 
-const BasicInfoChild = ({ fullName, profession, location } : BasicInfoProps) => (
+const BasicInfoChild = ({ fullName, profession, location }: BasicInfoProps) => (
   <Fragment>
     <BasicInfoImageContainer>
-      <BasicInfoImage src = {Constants.defaultImagePath}/>
+      <BasicInfoImage src={Constants.defaultImagePath} />
     </BasicInfoImageContainer>
     <BasicInfoPersonalContainer>
-      <BasicInfoName>{ fullName }</BasicInfoName>
-      <BasicInfoMeta>{ `${profession} from ${location}`}</BasicInfoMeta>
+      <BasicInfoName>{fullName}</BasicInfoName>
+      <BasicInfoMeta>{`${profession} from ${location}`}</BasicInfoMeta>
     </BasicInfoPersonalContainer>
   </Fragment>
 );
 
 const BasicInfo = (props: BasicInfoProps) => {
-  return props.isInfoFixed
-  ? (
+  return props.isInfoFixed ? (
     <BasicInfoContainerFixed>
-      <BasicInfoChild {...props}/>
+      <BasicInfoChild {...props} />
     </BasicInfoContainerFixed>
-  ) 
-  : (
-      <BasicInfoContainer>
-        <BasicInfoChild {...props}/>
-      </BasicInfoContainer>
-    )
-}; 
+  ) : (
+    <BasicInfoContainer>
+      <BasicInfoChild {...props} />
+    </BasicInfoContainer>
+  );
+};
 
 export default BasicInfo;
