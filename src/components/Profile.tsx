@@ -17,7 +17,7 @@ const Profile = () => {
   return (
     <Fragment>
       <BasicInfo fullName="Alex Valera" profession="UX Engineer" location="Washington D.C." isInfoFixed={isInfoFixed} />
-      <div style={{ height: '100vh', marginTop: `${isInfoFixed ? '8.5rem' : ''}` }}>Posts</div>
+      <div style={{ height: '100vh', marginTop: `${isInfoFixed ? '8.5rem' : ''}` }}>Posts!</div>
     </Fragment>
   );
 };
