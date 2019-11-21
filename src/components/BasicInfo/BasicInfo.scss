@@ -1,8 +1,10 @@
+@import '../../styles/base';
 .basic-info {
   background-color: white;
   border-bottom: 1px solid #dedede;
   padding: 3rem 0 1rem 0;
   display: flex;
+
   &__col {
     &:nth-child(1) {
       margin-right: 20px;
@@ -33,6 +35,17 @@
 
 .basic-info--fixed {
   top: 0;
+  left: 25px;
+  right: 25px;
   position: fixed;
   padding: 1rem 0 1rem 0;
+  @include width-more-than($mobile) {
+    left: 50px; 
+    right: 50px;
+  }
+  @include width-more-than($tablet) {
+    left: auto; 
+    right: auto;
+    width: 600px;
+  }
 }

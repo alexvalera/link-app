@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Profile from './components/Profile/Profile';
 
 function App() {

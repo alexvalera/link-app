@@ -1,0 +1,18 @@
+@import 'styles/base'; 
+@import 'styles/mixins'; 
+@import 'styles/variables';
+
+.App {
+  margin: 0 25px;
+  font-family: 'Avenir', 'sans-serif';
+  @include width-more-than($mobile) {
+    margin: 0 50px;
+  }
+  @include width-more-than($tablet) {
+    margin: 0 auto; 
+    width: 600px;
+  }
+  @include width-more-than($desktop) {
+    width: 800px;
+  }
+}
