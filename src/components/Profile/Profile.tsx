@@ -1,6 +1,6 @@
 import React, {useEffect, useState, Fragment} from 'react'; 
 import './Profile.scss';
-import BasicInfo from '../BasicInfo/BasicInfo';
+import BasicInfo from '@components/BasicInfo/BasicInfo';
 
 const Profile = () => {
   const applyFixedNav = (): void => {
@@ -17,14 +17,14 @@ const Profile = () => {
       document.removeEventListener('scroll', applyFixedNav);
     }
   }, []);
-
+  console.log(isInfoFixed);
   return (
     <Fragment>
       <BasicInfo 
         fullName = "Alex Valera"
         profession = "UX Engineer"
         location = "Washington D.C."
-        isInfoFixed
+        isInfoFixed = { isInfoFixed }
       />
       <div style = {{height: '100vh', marginTop: `${isInfoFixed ? '8.5rem': ''}`}}>Posts</div>
     </Fragment>

@@ -55,12 +55,4 @@ const BasicInfo = (props: BasicInfoProps) => {
   )
 }; 
 
-BasicInfo.propTypes = {
-  fullName: PropTypes.string, 
-  profession: PropTypes.string,
-  location: PropTypes.string, 
-  image: PropTypes.string, 
-  infoFixed: PropTypes.bool
-}
-
 export default BasicInfo;
