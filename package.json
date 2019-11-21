@@ -163,7 +163,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && git add . && node scripts/test.js --watchAll=false"
+      "pre-commit": "npm run lint && git add ."
     }
   }
 }
