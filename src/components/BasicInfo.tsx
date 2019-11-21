@@ -8,7 +8,7 @@ const BasicInfoContainer = styled.section`
   border-bottom: 1px solid ${colors.LIGHT_GREY}
   display: flex;
   padding: 3rem 0 1rem 0; 
-`;
+`
 
 const BasicInfoContainerFixed = styled(BasicInfoContainer)`
   left: 25px;

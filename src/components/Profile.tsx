@@ -1,13 +1,11 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import './Profile.scss';
-import BasicInfo from '@components/BasicInfo/BasicInfo';
+import BasicInfo from '@components/BasicInfo';
 
 const Profile = () => {
+  const [isInfoFixed, setInfoFixed] = useState(false);
   const applyFixedNav = (): void => {
     document.documentElement.scrollTop >= 32 ? setInfoFixed(true) : setInfoFixed(false);
   };
-
-  const [isInfoFixed, setInfoFixed] = useState(false);
 
   useEffect(() => {
     document.addEventListener('scroll', applyFixedNav);
@@ -15,7 +13,7 @@ const Profile = () => {
       document.removeEventListener('scroll', applyFixedNav);
     };
   }, []);
-  console.log(isInfoFixed);
+
   return (
     <Fragment>
       <BasicInfo fullName="Alex Valera" profession="UX Engineer" location="Washington D.C." isInfoFixed={isInfoFixed} />

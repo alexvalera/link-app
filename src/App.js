@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import Profile from './components/Profile/Profile';
+import Profile from '@components/Profile';
 
 function App() {
   return (
