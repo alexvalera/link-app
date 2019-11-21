@@ -1,13 +1,32 @@
-import React, { useEffect } from 'react'; 
+import React, { Fragment, useEffect } from 'react'; 
 import styled from 'styled-components';
 import './BasicInfo.scss';
 
-import { Colors, BasicInfoConstants as Constants } from '@constants/index';
+import { colors, device, basicInfoConstants as Constants } from '@constants/index';
 
 const BasicInfoContainer = styled.section`
   background-color: white;
-  border-bottom: 1px solid ${Colors.LIGHT_GREY}
-  padding: 3 rem 0 1rem 0; 
+  border-bottom: 1px solid ${colors.LIGHT_GREY}
+  display: flex;
+  padding: 3rem 0 1rem 0; 
+`;
+
+const BasicInfoContainerFixed = styled(BasicInfoContainer)`
+  left: 25px;
+  padding: 1rem 0; 
+  position: fixed;
+  right: 25px; 
+  top: 0; 
+  @media ${device.mobile} {
+    left: 50px;
+    right: 50px;
+  }
+
+  @media ${device.tablet} {
+    left: auto; 
+    right: auto; 
+    width: 600px; 
+  }
 `;
 
 const BasicInfoImageContainer = styled.div`
@@ -18,9 +37,17 @@ const BasicInfoImageContainer = styled.div`
 
 const BasicInfoPersonalContainer = styled.div``;
 
-const BasicInfoName = styled.div`
-  color: ${Colors.BLACK}
-  font-size: 24px;
+const BasicInfoName = styled.p`
+  color: ${colors.BLACK}
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+`; 
+
+const BasicInfoMeta= styled.p`
+  color: ${colors.BLACK}
+  font-size: 1rem;
+  font-weight: 300; 
   margin: 0;
 `; 
 
@@ -38,25 +65,30 @@ interface BasicInfoProps {
   isInfoFixed: boolean
 }
 
+const BasicInfoChild = ({ fullName, profession, location } : BasicInfoProps) => (
+  <Fragment>
+    <BasicInfoImageContainer>
+      <BasicInfoImage src = {Constants.defaultImagePath}/>
+    </BasicInfoImageContainer>
+    <BasicInfoPersonalContainer>
+      <BasicInfoName>{ fullName }</BasicInfoName>
+      <BasicInfoMeta>{ `${profession} from ${location}`}</BasicInfoMeta>
+    </BasicInfoPersonalContainer>
+  </Fragment>
+);
+
 const BasicInfo = (props: BasicInfoProps) => {
-  const basicInfoClasses = `basic-info ${(props.isInfoFixed ? 'basic-info--fixed': '')}`; 
-  console.log(basicInfoClasses);
-  useEffect(() => {
-    console.log(props);
-  })
-  return (
-    <div className = {basicInfoClasses}>
-      <div className = "basic-info__col">
-        <img alt = "profile" src = {props.image || Constants.defaultImagePath }/>
-      </div>
-      <div className = "basic-info__col">
-        <p className = "basic-info__name"><strong>{props.fullName || ''}</strong></p>
-        <p className = "basic-info__meta">
-          {props.profession || ''} from {props.location || ''}
-        </p>
-      </div>
-    </div>
-  )
+  return props.isInfoFixed
+  ? (
+    <BasicInfoContainerFixed>
+      <BasicInfoChild {...props}/>
+    </BasicInfoContainerFixed>
+  ) 
+  : (
+      <BasicInfoContainer>
+        <BasicInfoChild {...props}/>
+      </BasicInfoContainer>
+    )
 }; 
 
 export default BasicInfo;
