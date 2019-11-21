@@ -7,7 +7,7 @@ const BasicInfoContainer = styled.section`
   background-color: white;
   border-bottom: 1px solid ${colors.LIGHT_GREY}
   display: flex;
-  padding: 3rem 0 1rem 0; 
+  padding: 3rem 0 1rem 0;
 `;
 
 const BasicInfoContainerFixed = styled(BasicInfoContainer)`
@@ -56,7 +56,7 @@ const BasicInfoImage = styled.img`
   border-radius: 50%;
 `;
 
-interface BasicInfoProps {
+export interface BasicInfoProps {
   fullName: string;
   profession: string;
   location: string;

@@ -90,6 +90,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
     "@types/jest": "^24.0.23",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
@@ -133,7 +135,9 @@
     "modulePaths": [],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy", 
+      "@components/(.*)": "<rootDir>/src/components/$1", 
+      "@constants/(.*)": "<rootDir>/src/constants/$1"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -156,10 +160,10 @@
     "presets": [
       "react-app"
     ]
-  }, 
+  },
   "husky": {
     "hooks": {
-        "pre-commit": "npm run lint && git add ."
+      "pre-commit": "npm run lint && git add . && node scripts/test.js --watchAll=false"
     }
   }
 }
