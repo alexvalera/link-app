@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 import styled from 'styled-components';
 
 import { colors, device, basicInfoConstants as Constants } from '@constants/index';
@@ -64,7 +64,7 @@ export interface BasicInfoProps {
   isInfoFixed: boolean;
 }
 
-const BasicInfoChild = ({ fullName, profession, location }: BasicInfoProps) => (
+const BasicInfoChild = ({ fullName, profession, location }: BasicInfoProps): ReactElement => (
   <Fragment>
     <BasicInfoImageContainer>
       <BasicInfoImage src={Constants.defaultImagePath} />
@@ -76,7 +76,7 @@ const BasicInfoChild = ({ fullName, profession, location }: BasicInfoProps) => (
   </Fragment>
 );
 
-const BasicInfo = (props: BasicInfoProps) => {
+const BasicInfo = (props: BasicInfoProps): ReactElement => {
   return props.isInfoFixed ? (
     <BasicInfoContainerFixed>
       <BasicInfoChild {...props} />

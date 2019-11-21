@@ -1,7 +1,7 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState, Fragment, ReactElement } from 'react';
 import BasicInfo from '@components/BasicInfo';
 
-const Profile = () => {
+const Profile = (): ReactElement => {
   const [isInfoFixed, setInfoFixed] = useState(false);
   const applyFixedNav = (): void => {
     document.documentElement.scrollTop >= 32 ? setInfoFixed(true) : setInfoFixed(false);
@@ -9,7 +9,7 @@ const Profile = () => {
 
   useEffect(() => {
     document.addEventListener('scroll', applyFixedNav);
-    return () => {
+    return (): void => {
       document.removeEventListener('scroll', applyFixedNav);
     };
   }, []);
