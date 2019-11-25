@@ -5,13 +5,14 @@ import { colors, device, basicInfoConstants as Constants } from '@constants/inde
 
 const BasicInfoContainer = styled.section`
   background-color: white;
-  border-bottom: 1px solid ${colors.LIGHT_GREY}
   display: flex;
-  padding: 3rem 0 1rem 0;
+  margin: 3rem 0 1rem 0;
 `;
 
 const BasicInfoContainerFixed = styled(BasicInfoContainer)`
+  border-bottom: 1px solid ${colors.LIGHT_GREY};
   left: 25px;
+  margin: 0;
   padding: 1rem 0;
   position: fixed;
   right: 25px;
@@ -48,6 +49,7 @@ const BasicInfoMeta = styled.p`
   font-size: 1rem;
   font-weight: 300; 
   margin: 0;
+  transition: all 0.3s ease;
 `;
 
 const BasicInfoImage = styled.img`

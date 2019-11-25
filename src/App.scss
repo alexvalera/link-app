@@ -3,13 +3,13 @@
 @import 'styles/variables';
 
 .App {
-  margin: 0 25px;
+  margin: 10px 25px 0 25px;
   font-family: 'Avenir', 'sans-serif';
   @include width-more-than($mobile) {
-    margin: 0 50px;
+    margin: 10px 50px 0 50px;
   }
   @include width-more-than($tablet) {
-    margin: 0 auto; 
+    margin: 20px auto 0 auto; 
     width: 600px;
   }
   @include width-more-than($desktop) {

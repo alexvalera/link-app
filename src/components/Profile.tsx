@@ -1,5 +1,7 @@
 import React, { useEffect, useState, Fragment, ReactElement } from 'react';
 import BasicInfo from '@components/BasicInfo';
+import PostList from '@components/PostList';
+import AddPost from '@components/AddPost';
 
 const Profile = (): ReactElement => {
   const [isInfoFixed, setInfoFixed] = useState(false);
@@ -17,7 +19,8 @@ const Profile = (): ReactElement => {
   return (
     <Fragment>
       <BasicInfo fullName="Alex Valera" profession="UX Engineer" location="Washington D.C." isInfoFixed={isInfoFixed} />
-      <div style={{ height: '100vh', marginTop: `${isInfoFixed ? '8.5rem' : ''}` }}>Posts!</div>
+      <PostList isInfoFixed={isInfoFixed} />
+      <AddPost />
     </Fragment>
   );
 };
