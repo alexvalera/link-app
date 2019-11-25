@@ -1,4 +1,5 @@
 import { actions } from '@constants/index';
+import { Actions } from '@shared/interfaces';
 
 const initialState: ProfileState = {
   posts: [],
@@ -10,12 +11,6 @@ interface ProfileState {
   posts: any[];
   profileUrl: string;
   modalOpen: boolean;
-}
-
-interface Actions {
-  type: string;
-  payload: any;
-  meta?: string;
 }
 
 const rootReducer = (state: ProfileState = initialState, action: Actions): ProfileState => {

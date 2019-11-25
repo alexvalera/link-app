@@ -18,3 +18,9 @@ export interface PostSource {
 export interface ModalProps {
   isOpen: boolean;
 }
+
+export interface Actions {
+  type: string;
+  payload: any;
+  meta?: string;
+}
