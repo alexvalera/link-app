@@ -1,8 +1,8 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { colors } from '@constants/index';
+import { colors, postSources } from '@constants/index';
 import { ModalProps } from '@shared/interfaces';
-import { closeModal } from 'src/actions';
+import { closeModal, addPost } from 'src/actions';
 import { connect } from 'react-redux';
 import { ProfileState } from 'src/reducers';
 
@@ -71,13 +71,30 @@ const Modal = (props: any): ReactElement => {
   const closeModal = (): void => {
     props.closeModal();
   };
+  const handlePost = (): void => {
+    props.addPost({
+      title: 'test title',
+      link: 'https://spotify.com',
+      source: postSources.SPOTIFY,
+    });
+  };
   return (
     <Container isOpen={props.modalOpen}>
       <Content>
         <Title>Add a post</Title>
+        <form>
+          <div>
+            <label>Post Title</label>
+            <input type="text" name="title" />
+          </div>
+          <div>
+            <label>Post URL</label>
+            <input type="text" name="post-url" />
+          </div>
+        </form>
         <CTAContainer>
           <CancelButton onClick={closeModal}>Cancel</CancelButton>
-          <AcceptButton>Post</AcceptButton>
+          <AcceptButton onClick={handlePost}>Post</AcceptButton>
         </CTAContainer>
       </Content>
     </Container>
@@ -86,7 +103,8 @@ const Modal = (props: any): ReactElement => {
 const mapStateToProps = (state: ProfileState): any => {
   return {
     modalOpen: state.modalOpen,
+    posts: state.posts,
   };
 };
 
-export default connect(mapStateToProps, { closeModal })(Modal);
+export default connect(mapStateToProps, { closeModal, addPost })(Modal);

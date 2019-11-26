@@ -6,7 +6,10 @@ import Profile from '@components/Profile';
 import GlobalNav from '@components/GlobalNav';
 import rootReducer from './reducers';
 
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  (window as any)['__REDUX_DEVTOOLS_EXTENSION__'] && (window as any)['__REDUX_DEVTOOLS_EXTENSION__'](),
+);
 
 // eslint-disable-next-line
 function App() {

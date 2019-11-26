@@ -1,5 +1,5 @@
 import { actions } from '@constants/index';
-import { Actions } from '@shared/interfaces';
+import { Actions, PostProps } from '@shared/interfaces';
 
 const initialState: ProfileState = {
   posts: [],
@@ -8,7 +8,7 @@ const initialState: ProfileState = {
 };
 
 export interface ProfileState {
-  posts: any[];
+  posts: PostProps[];
   profileUrl: string;
   modalOpen: boolean;
 }
@@ -16,7 +16,7 @@ export interface ProfileState {
 const rootReducer = (state: ProfileState = initialState, action: Actions): ProfileState => {
   switch (action.type) {
     case actions.ADD_POST:
-      return { ...state, posts: [...state.posts, ...action.payload.post] };
+      return { ...state, posts: [...state.posts, action.payload] };
     case actions.OPEN_MODAL:
       return { ...state, modalOpen: true };
     case actions.CLOSE_MODAL:
