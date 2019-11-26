@@ -32,6 +32,9 @@ export const postSources = {
 
 export const actions = {
   ADD_POST: 'ADD_POST',
+  OPEN_MODAL: 'OPEN_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
+  TOGGLE_MODAL: 'TOGGLE_MODAL',
 };
 
 export const basicInfoConstants = {

@@ -2,6 +2,9 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from '@constants/index';
 import { ModalProps } from '@shared/interfaces';
+import { closeModal } from 'src/actions';
+import { connect } from 'react-redux';
+import { ProfileState } from 'src/reducers';
 
 const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
@@ -64,17 +67,12 @@ const CancelButton = styled(Button)`
 
 const AcceptButton = styled(Button)``;
 
-const Modal = (props: ModalProps): ReactElement => {
-  const [isOpen, setIsOpen] = useState(props.isOpen);
+const Modal = (props: any): ReactElement => {
   const closeModal = (): void => {
-    console.log('close modal');
-    setIsOpen(false);
+    props.closeModal();
   };
-  useEffect(() => {
-    console.log(props);
-  });
   return (
-    <Container isOpen={props.isOpen}>
+    <Container isOpen={props.modalOpen}>
       <Content>
         <Title>Add a post</Title>
         <CTAContainer>
@@ -85,5 +83,10 @@ const Modal = (props: ModalProps): ReactElement => {
     </Container>
   );
 };
+const mapStateToProps = (state: ProfileState): any => {
+  return {
+    modalOpen: state.modalOpen,
+  };
+};
 
-export default Modal;
+export default connect(mapStateToProps, { closeModal })(Modal);

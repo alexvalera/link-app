@@ -2,6 +2,9 @@ import React, { ReactElement, Fragment, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { device, colors } from '@constants/index';
 import Modal from './Modal';
+import { ProfileState } from 'src/reducers';
+import { openModal } from 'src/actions';
+import { connect } from 'react-redux';
 
 const AddPostButton = styled.button`
   background-color: ${colors.BLACK};
@@ -26,20 +29,22 @@ const AddPostButton = styled.button`
   }
 `;
 
-const AddPost = (): ReactElement => {
-  const [isClicked, setClicked] = useState(false);
-  const click = (): void => {
-    setClicked(!isClicked);
+const AddPost = (props: any): ReactElement => {
+  const handleClick = (): void => {
+    props.modalOpen ? props.closeModal() : props.openModal();
   };
-  useEffect(() => {
-    console.log(isClicked);
-  });
   return (
     <Fragment>
-      <AddPostButton onClick={click}>Add Post</AddPostButton>
-      <Modal isOpen={isClicked} />
+      <AddPostButton onClick={handleClick}>Add Post</AddPostButton>
+      <Modal />
     </Fragment>
   );
 };
 
-export default AddPost;
+const mapStateToProps = (state: ProfileState): any => {
+  return {
+    modalOpen: state.modalOpen,
+  };
+};
+
+export default connect(mapStateToProps, { openModal })(AddPost);

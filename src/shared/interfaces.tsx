@@ -21,6 +21,6 @@ export interface ModalProps {
 
 export interface Actions {
   type: string;
-  payload: any;
+  payload?: any;
   meta?: string;
 }
