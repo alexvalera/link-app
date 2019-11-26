@@ -1,7 +1,7 @@
 // src/js/actions/index.js
-import { Actions } from '@shared/interfaces';
+import { Actions, PostProps } from '@shared/interfaces';
 
-export function addPost(post: any): Actions {
+export function addPost(post: PostProps): Actions {
   return { type: 'ADD_POST', payload: post };
 }
 
