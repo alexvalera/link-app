@@ -1,10 +1,9 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors, postSources } from '@constants/index';
-import { ModalProps } from '@shared/interfaces';
+import { ModalProps, ProfileState } from '@shared/interfaces';
 import { closeModal, addPost } from 'src/actions';
 import { connect } from 'react-redux';
-import { ProfileState } from 'src/reducers';
 
 const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.5);

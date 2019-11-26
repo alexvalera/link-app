@@ -2,9 +2,9 @@ import React, { ReactElement, Fragment, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { device, colors } from '@constants/index';
 import Modal from './Modal';
-import { ProfileState } from 'src/reducers';
 import { openModal } from 'src/actions';
 import { connect } from 'react-redux';
+import { ProfileState } from '@shared/interfaces';
 
 const AddPostButton = styled.button`
   background-color: ${colors.BLACK};

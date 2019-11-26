@@ -1,3 +1,9 @@
+export interface ProfileState {
+  posts: PostProps[];
+  profileUrl: string;
+  modalOpen: boolean;
+}
+
 export interface PostProps {
   title: string;
   image?: PostImage;
