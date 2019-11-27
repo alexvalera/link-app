@@ -1,32 +1,32 @@
-export interface ProfileState {
+export type ProfileState = {
   posts: PostProps[];
   profileUrl: string;
   modalOpen: boolean;
-}
+};
 
-export interface PostProps {
+export type PostProps = {
   title: string;
   image?: PostImage;
   link: string;
   source: PostSource;
-}
+};
 
-export interface PostImage {
+export type PostImage = {
   src: string;
   meta: string;
-}
+};
 
-export interface PostSource {
+export type PostSource = {
   icon: string;
   domain: string;
-}
+};
 
-export interface ModalProps {
+export type ModalProps = {
   isOpen: boolean;
-}
+};
 
-export interface Actions {
+export type Actions = {
   type: string;
   payload?: any;
   meta?: string;
-}
+};

@@ -29,13 +29,13 @@ const AddPostButton = styled.button`
   }
 `;
 
-interface AddPostStateProps {
+type AddPostStateProps = {
   modalOpen: boolean;
-}
+};
 
-interface AddPostDispatchProps {
+type AddPostDispatchProps = {
   openModal: Function;
-}
+};
 
 const AddPostForm = (
   <form>
