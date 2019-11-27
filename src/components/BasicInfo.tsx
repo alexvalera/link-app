@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 import { colors, device, basicInfoConstants as Constants } from '@constants/index';
@@ -67,7 +67,7 @@ export interface BasicInfoProps {
 }
 
 const BasicInfoChild = ({ fullName, profession, location }: BasicInfoProps): ReactElement => (
-  <Fragment>
+  <>
     <BasicInfoImageContainer>
       <BasicInfoImage src={Constants.defaultImagePath} />
     </BasicInfoImageContainer>
@@ -75,7 +75,7 @@ const BasicInfoChild = ({ fullName, profession, location }: BasicInfoProps): Rea
       <BasicInfoName>{fullName}</BasicInfoName>
       <BasicInfoMeta>{`${profession} from ${location}`}</BasicInfoMeta>
     </BasicInfoPersonalContainer>
-  </Fragment>
+  </>
 );
 
 const BasicInfo = (props: BasicInfoProps): ReactElement => {

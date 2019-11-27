@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment, ReactElement } from 'react';
+import React, { useEffect, useState, ReactElement } from 'react';
 import BasicInfo from '@components/BasicInfo';
 import PostList from '@components/PostList';
 import AddPost from '@components/AddPost';
@@ -9,6 +9,13 @@ const Profile = (): ReactElement => {
     document.documentElement.scrollTop >= 32 ? setInfoFixed(true) : setInfoFixed(false);
   };
 
+  const basicInfoProps = {
+    fullName: 'Alex Valera',
+    profession: 'UX Engineer',
+    location: 'Washington D.C.',
+    isInfoFixed,
+  };
+
   useEffect(() => {
     document.addEventListener('scroll', applyFixedNav);
     return (): void => {
@@ -17,11 +24,11 @@ const Profile = (): ReactElement => {
   }, []);
 
   return (
-    <Fragment>
-      <BasicInfo fullName="Alex Valera" profession="UX Engineer" location="Washington D.C." isInfoFixed={isInfoFixed} />
+    <>
+      <BasicInfo {...basicInfoProps} />
       <PostList isInfoFixed={isInfoFixed} />
       <AddPost />
-    </Fragment>
+    </>
   );
 };
 

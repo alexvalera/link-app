@@ -1,4 +1,4 @@
-import React, { ReactElement, Fragment } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { device, colors } from '@constants/index';
 import Modal from './Modal';
@@ -59,10 +59,10 @@ const AddPost = (props: AddPostStateProps & AddPostDispatchProps): ReactElement 
     content: AddPostForm,
   };
   return (
-    <Fragment>
+    <>
       <AddPostButton onClick={handleClick}>Add Post</AddPostButton>
       <Modal {...modalProps} />
-    </Fragment>
+    </>
   );
 };
 

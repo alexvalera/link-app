@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import Post from './Post';
 import { postSources } from '@constants/index';
@@ -26,12 +26,12 @@ const mockPostProps = {
 
 const PostList = (props: PostListProps): ReactElement => {
   return (
-    <Fragment>
+    <>
       <PostListContainer {...props}>
         <Post {...mockPostProps} />
         <Post {...mockPostProps} />
       </PostListContainer>
-    </Fragment>
+    </>
   );
 };
 export default PostList;
