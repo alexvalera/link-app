@@ -1,7 +1,7 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { colors, postSources } from '@constants/index';
-import { ModalProps, ProfileState } from '@shared/interfaces';
+import { ProfileState, PostProps } from '@shared/interfaces';
 import { closeModal, addPost } from 'src/actions';
 import { connect } from 'react-redux';
 
@@ -15,8 +15,8 @@ const Container = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: ${(props: ModalProps) => (props.isOpen ? '1' : '-99')};
-  opacity: ${(props: ModalProps) => (props.isOpen ? '1' : '0')};
+  z-index: ${(props: ModalStateProps) => (props.modalOpen ? '1' : '-99')};
+  opacity: ${(props: ModalStateProps) => (props.modalOpen ? '1' : '0')};
 `;
 
 const Content = styled.div`
@@ -66,10 +66,28 @@ const CancelButton = styled(Button)`
 
 const AcceptButton = styled(Button)``;
 
-const Modal = (props: any): ReactElement => {
+type ModalProps = {
+  content: ReactElement;
+  title: string;
+};
+
+type ModalStateProps = {
+  modalOpen: boolean;
+  posts: PostProps[];
+  content: ReactElement;
+  title: string;
+};
+
+type ModalDispatchProps = {
+  closeModal: Function;
+  addPost: Function;
+};
+
+const Modal = (props: ModalStateProps & ModalDispatchProps): ReactElement => {
   const closeModal = (): void => {
     props.closeModal();
   };
+
   const handlePost = (): void => {
     props.addPost({
       title: 'test title',
@@ -77,20 +95,12 @@ const Modal = (props: any): ReactElement => {
       source: postSources.SPOTIFY,
     });
   };
+
   return (
-    <Container isOpen={props.modalOpen}>
+    <Container {...props}>
       <Content>
         <Title>Add a post</Title>
-        <form>
-          <div>
-            <label>Post Title</label>
-            <input type="text" name="title" />
-          </div>
-          <div>
-            <label>Post URL</label>
-            <input type="text" name="post-url" />
-          </div>
-        </form>
+        {props.content}
         <CTAContainer>
           <CancelButton onClick={closeModal}>Cancel</CancelButton>
           <AcceptButton onClick={handlePost}>Post</AcceptButton>
@@ -99,10 +109,13 @@ const Modal = (props: any): ReactElement => {
     </Container>
   );
 };
-const mapStateToProps = (state: ProfileState): any => {
+
+const mapStateToProps = (state: ProfileState, ownProps: ModalProps): ModalStateProps => {
   return {
     modalOpen: state.modalOpen,
     posts: state.posts,
+    content: ownProps.content,
+    title: ownProps.title,
   };
 };
 

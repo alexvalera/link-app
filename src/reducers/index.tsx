@@ -1,5 +1,5 @@
 import { actions } from '@constants/index';
-import { Actions, PostProps, ProfileState } from '@shared/interfaces';
+import { Actions, ProfileState } from '@shared/interfaces';
 
 const initialState: ProfileState = {
   posts: [],

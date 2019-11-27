@@ -1,4 +1,4 @@
-import React, { ReactElement, Fragment, useState, useEffect } from 'react';
+import React, { ReactElement, Fragment } from 'react';
 import styled from 'styled-components';
 import { device, colors } from '@constants/index';
 import Modal from './Modal';
@@ -29,19 +29,44 @@ const AddPostButton = styled.button`
   }
 `;
 
-const AddPost = (props: any): ReactElement => {
+interface AddPostStateProps {
+  modalOpen: boolean;
+}
+
+interface AddPostDispatchProps {
+  openModal: Function;
+}
+
+const AddPostForm = (
+  <form>
+    <div>
+      <label>Post Title</label>
+      <input type="text" name="title" />
+    </div>
+    <div>
+      <label>Post URL</label>
+      <input type="text" name="post-url" />
+    </div>
+  </form>
+);
+
+const AddPost = (props: AddPostStateProps & AddPostDispatchProps): ReactElement => {
   const handleClick = (): void => {
-    props.modalOpen ? props.closeModal() : props.openModal();
+    props.modalOpen && props.openModal();
+  };
+  const modalProps = {
+    title: 'Add a post',
+    content: AddPostForm,
   };
   return (
     <Fragment>
       <AddPostButton onClick={handleClick}>Add Post</AddPostButton>
-      <Modal />
+      <Modal {...modalProps} />
     </Fragment>
   );
 };
 
-const mapStateToProps = (state: ProfileState): any => {
+const mapStateToProps = (state: ProfileState): AddPostStateProps => {
   return {
     modalOpen: state.modalOpen,
   };
