@@ -52,7 +52,7 @@ const AddPostForm = (
 
 const AddPost = (props: AddPostStateProps & AddPostDispatchProps): ReactElement => {
   const handleClick = (): void => {
-    props.modalOpen && props.openModal();
+    !props.modalOpen && props.openModal();
   };
   const modalProps = {
     title: 'Add a post',
