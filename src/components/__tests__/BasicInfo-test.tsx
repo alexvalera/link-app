@@ -8,8 +8,7 @@ let props: BasicInfoProps;
 beforeEach(() => {
   props = {
     fullName: 'mockName',
-    profession: 'mockProfession',
-    location: 'mockLocation',
+    tagline: 'mockTagline',
     image: '/mockPath',
     isInfoFixed: false,
   };

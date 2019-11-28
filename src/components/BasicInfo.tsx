@@ -60,20 +60,19 @@ const BasicInfoImage = styled.img`
 
 export interface BasicInfoProps {
   fullName: string;
-  profession: string;
-  location: string;
+  tagline: string;
   image?: string;
   isInfoFixed: boolean;
 }
 
-const BasicInfoChild = ({ fullName, profession, location }: BasicInfoProps): ReactElement => (
+const BasicInfoChild = ({ fullName, tagline }: BasicInfoProps): ReactElement => (
   <>
     <BasicInfoImageContainer>
       <BasicInfoImage src={Constants.defaultImagePath} />
     </BasicInfoImageContainer>
     <BasicInfoPersonalContainer>
       <BasicInfoName>{fullName}</BasicInfoName>
-      <BasicInfoMeta>{`${profession} from ${location}`}</BasicInfoMeta>
+      <BasicInfoMeta>{tagline}</BasicInfoMeta>
     </BasicInfoPersonalContainer>
   </>
 );

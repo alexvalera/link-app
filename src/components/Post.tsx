@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import { PostProps } from '@shared/interfaces';
 import { colors } from '@constants/index';
 import { useSource } from '@hooks/index';
+import { slideUp } from 'src/styles/keyframes';
 
 export const Container = styled.article`
   border: 1px solid ${colors.LIGHT_GREY}
   border-radius: 5px; 
   display: flex;
   margin-bottom: 20px;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  animation: ${slideUp} 0.3s ease-in; 
 `;
 
 const Source = styled.div``;

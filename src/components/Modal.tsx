@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import { colors } from '@constants/index';
 import { ProfileState, PostProps } from '@shared/interfaces';
@@ -6,7 +6,7 @@ import { closeModal, addPost } from 'src/actions';
 import { connect } from 'react-redux';
 
 const Container = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@ const Container = styled.div`
   left: 0;
   bottom: 0;
   z-index: ${(props: ModalStateProps) => (props.modalOpen ? '1' : '-99')};
-  opacity: ${(props: ModalStateProps) => (props.modalOpen ? '1' : '0')};
+  opacity: ${(props: ModalStateProps) => (props.modalOpen ? '1' : '0')}; 
 `;
 
 const Content = styled.div`
@@ -26,9 +26,13 @@ const Content = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   padding: 1rem 2rem;
   max-width: 600px;
-  min-height: 300px;
+  min-height: 355px;
   width: 80%;
   position: relative;
+  transition: all 0.3s ease;
+  opacity: ${(props: ModalStateProps) => (props.modalOpen ? '1' : '0')};
+  transform: ${(props: ModalStateProps) => (props.modalOpen ? 'translateY(0px)' : 'translateY(10px)')};
+
 `;
 
 const Title = styled.h3`
@@ -90,8 +94,8 @@ type ModalDispatchProps = {
 };
 
 const Modal = (props: ModalStateProps & ModalDispatchProps): ReactElement => {
-  const handleCancel = (): void => {
-    props.closeModal();
+  const handleCancel = (e: SyntheticEvent): void => {
+    (e.target as HTMLElement).classList.contains('modal-container') && props.closeModal();
   };
 
   const handleAccept = async (): Promise<any> => {
@@ -100,12 +104,16 @@ const Modal = (props: ModalStateProps & ModalDispatchProps): ReactElement => {
   };
 
   return (
-    <Container {...props}>
-      <Content>
+    <Container 
+      className="modal-container"
+      onClick={handleCancel} 
+      {...props}
+    >
+      <Content {...props}>
         <Title>{props.title}</Title>
         {props.content}
         <CTAContainer>
-          <CancelButton onClick={handleCancel}>{props.cancelButtonText}</CancelButton>
+          {/* <CancelButton onClick={handleCancel}>{props.cancelButtonText}</CancelButton> */}
           <AcceptButton onClick={handleAccept}>{props.acceptButtonText}</AcceptButton>
         </CTAContainer>
       </Content>

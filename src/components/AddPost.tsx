@@ -32,18 +32,28 @@ const AddPostButton = styled.button`
 
 const Container = styled.form`
   display: flex;
+  flex-direction: column;
 `;
 
 const InputContainer = styled.div`
-  margin: 1rem 0;
+  margin: 0 0 1.5rem 0; 
 `;
 
 const Label = styled.label`
+  display: block;
+  font-size: 14px; 
+  color: #424242;
   font-weight: bold;
+  margin-bottom: 10px;
 `;
 
 const Input = styled.input`
   font-size: 1rem;
+  width: calc(100% - 32px);
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  color: #424242;
+  padding: 1rem;
 `;
 
 const SubmitButton = styled.button`
@@ -78,7 +88,6 @@ const AddPost = (props: AddPostStateProps & AddPostDispatchProps): ReactElement 
 
   const handlePost = (e: SyntheticEvent): void => {
     e.preventDefault();
-    console.log('submit');
     props.addPost({
       id: UUID(),
       title: postTitle,
@@ -97,19 +106,21 @@ const AddPost = (props: AddPostStateProps & AddPostDispatchProps): ReactElement 
   const AddPostForm = (
     <Container onSubmit={handlePost}>
       <InputContainer>
-        <Label>Post Title</Label>
+        <Label>Description</Label>
         <Input 
           onChange={onPostTitleChange} 
           name="title"
           value={postTitle}
+          placeholder="What's your post about?"
         />
       </InputContainer>
       <InputContainer>
-        <Label>Post URL</Label>
+        <Label>URL</Label>
         <Input 
           onChange={onLinkChange}
           name="post-url"
           value={postLink}
+          placeholder="www.example.com"
         />
       </InputContainer>
       <SubmitButton type="submit" />
@@ -120,7 +131,7 @@ const AddPost = (props: AddPostStateProps & AddPostDispatchProps): ReactElement 
     <>
       <AddPostButton onClick={handleClick}>Add Post</AddPostButton>
       <Modal 
-        title="Add a post"
+        title="Share your creation"
         content={AddPostForm}
         cancelButtonText="Cancel"
         acceptButtonText="Post"

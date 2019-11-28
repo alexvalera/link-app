@@ -11,8 +11,7 @@ const Profile = (): ReactElement => {
 
   const basicInfoProps = {
     fullName: 'Alex Valera',
-    profession: 'UX Engineer',
-    location: 'Washington D.C.',
+    tagline: 'I code and make beats.',
     isInfoFixed,
   };
 
