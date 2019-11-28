@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { colors, postSources } from '@constants/index';
+import { colors } from '@constants/index';
 import { ProfileState, PostProps } from '@shared/interfaces';
 import { closeModal, addPost } from 'src/actions';
 import { connect } from 'react-redux';
@@ -69,6 +69,9 @@ const AcceptButton = styled(Button)``;
 type ModalProps = {
   content: ReactElement;
   title: string;
+  cancelButtonText: string;
+  acceptButtonText: string;
+  acceptButtonCallBack: Function;
 };
 
 type ModalStateProps = {
@@ -76,6 +79,9 @@ type ModalStateProps = {
   posts: PostProps[];
   content: ReactElement;
   title: string;
+  cancelButtonText: string;
+  acceptButtonText: string;
+  acceptButtonCallBack: Function;
 };
 
 type ModalDispatchProps = {
@@ -84,26 +90,23 @@ type ModalDispatchProps = {
 };
 
 const Modal = (props: ModalStateProps & ModalDispatchProps): ReactElement => {
-  const closeModal = (): void => {
+  const handleCancel = (): void => {
     props.closeModal();
   };
 
-  const handlePost = (): void => {
-    props.addPost({
-      title: 'test title',
-      link: 'https://spotify.com',
-      source: postSources.SPOTIFY,
-    });
+  const handleAccept = async (): Promise<any> => {
+    await props.acceptButtonCallBack();
+    props.closeModal();
   };
 
   return (
     <Container {...props}>
       <Content>
-        <Title>Add a post</Title>
+        <Title>{props.title}</Title>
         {props.content}
         <CTAContainer>
-          <CancelButton onClick={closeModal}>Cancel</CancelButton>
-          <AcceptButton onClick={handlePost}>Post</AcceptButton>
+          <CancelButton onClick={handleCancel}>{props.cancelButtonText}</CancelButton>
+          <AcceptButton onClick={handleAccept}>{props.acceptButtonText}</AcceptButton>
         </CTAContainer>
       </Content>
     </Container>
@@ -116,6 +119,9 @@ const mapStateToProps = (state: ProfileState, ownProps: ModalProps): ModalStateP
     posts: state.posts,
     content: ownProps.content,
     title: ownProps.title,
+    cancelButtonText: ownProps.cancelButtonText,
+    acceptButtonText: ownProps.acceptButtonText, 
+    acceptButtonCallBack: ownProps.acceptButtonCallBack,
   };
 };
 

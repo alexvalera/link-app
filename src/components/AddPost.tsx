@@ -1,9 +1,10 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, SyntheticEvent, useEffect } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import UUID from 'uuid/v4'; 
 import { device, colors } from '@constants/index';
 import Modal from './Modal';
-import { openModal } from 'src/actions';
-import { connect } from 'react-redux';
+import { openModal, addPost, closeModal } from 'src/actions';
 import { ProfileState } from '@shared/interfaces';
 
 const AddPostButton = styled.button`
@@ -29,39 +30,102 @@ const AddPostButton = styled.button`
   }
 `;
 
+const Container = styled.form`
+  display: flex;
+`;
+
+const InputContainer = styled.div`
+  margin: 1rem 0;
+`;
+
+const Label = styled.label`
+  font-weight: bold;
+`;
+
+const Input = styled.input`
+  font-size: 1rem;
+`;
+
+const SubmitButton = styled.button`
+  display: none;
+`;
+
 type AddPostStateProps = {
   modalOpen: boolean;
 };
 
 type AddPostDispatchProps = {
   openModal: Function;
+  closeModal: Function;
+  addPost: Function;
 };
 
-const AddPostForm = (
-  <form>
-    <div>
-      <label>Post Title</label>
-      <input type="text" name="title" />
-    </div>
-    <div>
-      <label>Post URL</label>
-      <input type="text" name="post-url" />
-    </div>
-  </form>
-);
-
 const AddPost = (props: AddPostStateProps & AddPostDispatchProps): ReactElement => {
+  const [postTitle, setPostTitle] = useState('');
+  const [postLink, setPostLink] = useState('');
+
+  const onPostTitleChange = (e: SyntheticEvent) => {
+    setPostTitle((e.target as HTMLInputElement).value);
+  };
+
+  const onLinkChange = (e: SyntheticEvent) => {
+    setPostLink((e.target as HTMLInputElement).value);
+  }
+
   const handleClick = (): void => {
     !props.modalOpen && props.openModal();
   };
-  const modalProps = {
-    title: 'Add a post',
-    content: AddPostForm,
+
+  const handlePost = (e: SyntheticEvent): void => {
+    e.preventDefault();
+    console.log('submit');
+    props.addPost({
+      id: UUID(),
+      title: postTitle,
+      link: postLink,
+    });
+    props.closeModal();
   };
+
+  useEffect(() => {
+    if (!props.modalOpen) {
+      setPostTitle(''); 
+      setPostLink('');
+    }
+  },[props.modalOpen])
+
+  const AddPostForm = (
+    <Container onSubmit={handlePost}>
+      <InputContainer>
+        <Label>Post Title</Label>
+        <Input 
+          onChange={onPostTitleChange} 
+          name="title"
+          value={postTitle}
+        />
+      </InputContainer>
+      <InputContainer>
+        <Label>Post URL</Label>
+        <Input 
+          onChange={onLinkChange}
+          name="post-url"
+          value={postLink}
+        />
+      </InputContainer>
+      <SubmitButton type="submit" />
+    </Container>
+  );
+
   return (
     <>
       <AddPostButton onClick={handleClick}>Add Post</AddPostButton>
-      <Modal {...modalProps} />
+      <Modal 
+        title="Add a post"
+        content={AddPostForm}
+        cancelButtonText="Cancel"
+        acceptButtonText="Post"
+        acceptButtonCallBack={handlePost}
+      />
     </>
   );
 };
@@ -72,4 +136,4 @@ const mapStateToProps = (state: ProfileState): AddPostStateProps => {
   };
 };
 
-export default connect(mapStateToProps, { openModal })(AddPost);
+export default connect(mapStateToProps, { openModal, closeModal, addPost })(AddPost);

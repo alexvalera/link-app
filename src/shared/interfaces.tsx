@@ -8,7 +8,7 @@ export type PostProps = {
   title: string;
   image?: PostImage;
   link: string;
-  source: PostSource;
+  id?: string;
 };
 
 export type PostImage = {

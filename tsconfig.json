@@ -22,7 +22,8 @@
     "paths": {
       "@components/*": ["src/components/*"], 
       "@constants/*": ["src/constants/*"], 
-      "@shared/*": ["src/shared/*"]
+      "@shared/*": ["src/shared/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   },
   "include": [

@@ -1,7 +1,8 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import styled from 'styled-components';
 import { PostProps } from '@shared/interfaces';
 import { colors } from '@constants/index';
+import { useSource } from '@hooks/index';
 
 export const Container = styled.article`
   border: 1px solid ${colors.LIGHT_GREY}
@@ -27,10 +28,12 @@ const Title = styled.h3`
 `;
 
 const Post = (props: PostProps): ReactElement => {
+  const source = useSource(props.link);
+  console.log(source);
   return (
     <Container>
       <Source>
-        <SourceImage src={props.source.icon} />
+        <SourceImage src={source.icon} />
       </Source>
       <Title>{props.title}</Title>
     </Container>

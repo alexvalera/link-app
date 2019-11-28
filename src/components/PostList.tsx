@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import Post from './Post';
 import { postSources } from '@constants/index';
+import { ProfileState, PostProps } from '@shared/interfaces';
+import { connect } from 'react-redux';
 
 const PostListContainer = styled.section`
   height: 100vh;
@@ -10,28 +12,34 @@ const PostListContainer = styled.section`
   padding: 2rem 0;
 `;
 
-interface PostListProps {
+type PostListProps = {
   isInfoFixed: boolean;
-}
-
-const mockPostProps = {
-  title: `New song "Back To U"`,
-  image: {
-    src: '',
-    meta: '',
-  },
-  link: '#',
-  source: postSources.SPOTIFY,
 };
 
-const PostList = (props: PostListProps): ReactElement => {
+type PostListStateProps = {
+  posts: PostProps[];
+  isInfoFixed: boolean;
+};
+
+const PostList = (props: PostListStateProps): ReactElement => {
   return (
     <>
       <PostListContainer {...props}>
-        <Post {...mockPostProps} />
-        <Post {...mockPostProps} />
+        {
+          props.posts.map(post => {
+            return <Post key={post.id} {...post} />
+          })
+        }
       </PostListContainer>
     </>
   );
 };
-export default PostList;
+
+const mapStateToProps = (state: ProfileState, ownProps: PostListProps): PostListStateProps => {
+  return {
+    posts: state.posts,
+    isInfoFixed: ownProps.isInfoFixed,
+  };
+};
+
+export default connect(mapStateToProps, {})(PostList);
