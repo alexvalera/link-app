@@ -16,7 +16,7 @@ const AddPostButton = styled.button`
   font-weight: bold;
   padding: 1rem;
   position: fixed;
-  max-width: 600px;
+  max-width: 800px;
   width: 80%;
   right: 25px;
 
