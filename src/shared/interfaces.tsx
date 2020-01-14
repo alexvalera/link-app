@@ -2,6 +2,7 @@ export type ProfileState = {
   posts: PostProps[];
   profileUrl: string;
   modalOpen: boolean;
+  editMode: boolean;
 };
 
 export type PostProps = {

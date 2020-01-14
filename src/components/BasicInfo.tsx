@@ -27,6 +27,12 @@ const BasicInfoContainerFixed = styled(BasicInfoContainer)`
     right: auto;
     width: 600px;
   }
+
+  @media ${device.desktop} {
+    left: auto;
+    right: auto;
+    width: 800px;
+  }
 `;
 
 const BasicInfoImageContainer = styled.div`

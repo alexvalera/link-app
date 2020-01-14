@@ -4,6 +4,7 @@ import Post from './Post';
 import { postSources } from '@constants/index';
 import { ProfileState, PostProps } from '@shared/interfaces';
 import { connect } from 'react-redux';
+import BlankPostsLists from './BlankPostsLists';
 
 const PostListContainer = styled.section`
   height: 100vh;
@@ -26,9 +27,12 @@ const PostList = (props: PostListStateProps): ReactElement => {
     <>
       <PostListContainer {...props}>
         {
-          props.posts.map(post => {
+          props.posts.length > 0 && props.posts.map(post => {
             return <Post key={post.id} {...post} />
           })
+        }
+        {
+          props.posts.length == 0 && <BlankPostsLists />
         }
       </PostListContainer>
     </>

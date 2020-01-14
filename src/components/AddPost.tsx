@@ -19,14 +19,22 @@ const AddPostButton = styled.button`
   max-width: 600px;
   width: 80%;
   right: 25px;
+
   @media ${device.mobile} {
     left: 50px;
     right: 50px;
   }
+
   @media ${device.tablet} {
     left: auto;
     right: auto;
-    width: 600px;
+    width: 800px;
+  }
+
+  @media ${device.desktop} {
+    left: auto;
+    right: auto;
+    width: 800px;
   }
 `;
 

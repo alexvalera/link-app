@@ -5,6 +5,7 @@ const initialState: ProfileState = {
   posts: [],
   profileUrl: '#',
   modalOpen: false,
+  editMode: true,
 };
 
 const rootReducer = (state: ProfileState = initialState, action: Actions): ProfileState => {

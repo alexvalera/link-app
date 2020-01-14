@@ -32,7 +32,6 @@ const Title = styled.h3`
 
 const Post = (props: PostProps): ReactElement => {
   const source = useSource(props.link);
-  console.log(source);
   return (
     <Container>
       <Source>
